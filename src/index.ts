@@ -1,5 +1,6 @@
-import app from "./app/app";
 import "./env";
+
+import app from "./app/app";
 
 // Start the application
 (async () => {
