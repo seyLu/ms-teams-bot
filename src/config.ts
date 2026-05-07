@@ -1,6 +1,3 @@
-console.log("key", process.env.OPENAI_API_KEY);
-console.log("secret", process.env.SECRET_OPENAI_API_KEY);
-
 const config = {
     MicrosoftAppId: process.env.CLIENT_ID,
     MicrosoftAppType: process.env.BOT_TYPE,

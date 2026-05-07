@@ -1,34 +1,18 @@
-import path from "node:path";
 import "dotenv";
 import { configDotenv } from "dotenv";
 
-/**
- * Base file (shared defaults)
- */
-configDotenv({ path: path.resolve("env/.env") });
-
-/**
- * Decide environment once
- */
 const env = process.env.APP_ENV || "dev";
 
-/**
- * Environment-specific file
- */
+configDotenv({ path: `env/.env.${env}` });
 configDotenv({
-    path: path.resolve(`env/.env.${env}`),
+    path: `env/.env.${env}.user`,
+    override: true,
 });
 
-/**
- * Local overrides (developer machine)
- */
+// local overrides
 configDotenv({
-    path: path.resolve(`env/.env.local`),
+    path: `env/.env.local`,
 });
-
-/**
- * Secret overrides (never committed)
- */
 configDotenv({
-    path: path.resolve(`env/.env.${env}.user`),
+    path: `env/.env.local.user`,
 });
