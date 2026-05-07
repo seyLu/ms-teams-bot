@@ -1,6 +1,12 @@
-import { IChatModel, ChatSendOptions, Message, ModelMessage } from '@microsoft/teams.ai';
-import { streamText, LanguageModel } from 'ai';
+import type {
+    ChatSendOptions,
+    IChatModel,
+    Message,
+    ModelMessage,
+} from '@microsoft/teams.ai';
+import { type LanguageModel, streamText } from 'ai';
 
+// biome-ignore lint/suspicious/noExplicitAny: Required for loose compatibility with Vercel AI SDK CoreMessages
 type CoreMessage = any;
 
 export class UnifiedChatModel implements IChatModel {
@@ -10,15 +16,19 @@ export class UnifiedChatModel implements IChatModel {
         this.aiModel = aiModel;
     }
 
-    async send(input: Message, options?: ChatSendOptions): Promise<ModelMessage> {
-        let chatMessages: CoreMessage[] = [];
+    async send(
+        input: Message,
+        options?: ChatSendOptions,
+    ): Promise<ModelMessage> {
+        const chatMessages: CoreMessage[] = [];
 
         if (options?.system) {
             chatMessages.push({
                 role: 'system',
-                content: typeof options.system.content === 'string' 
-                  ? options.system.content 
-                  : JSON.stringify(options.system.content)
+                content:
+                    typeof options.system.content === 'string'
+                        ? options.system.content
+                        : JSON.stringify(options.system.content),
             });
         }
 
@@ -56,13 +66,19 @@ export class UnifiedChatModel implements IChatModel {
             case 'user':
                 return {
                     role: 'user',
-                    content: typeof msg.content === 'string' 
-                        ? msg.content 
-                        : msg.content.map(p => {
-                            if (p.type === 'text') return { type: 'text', text: p.text };
-                            if (p.type === 'image_url') return { type: 'image', image: p.image_url };
-                            return { type: 'text', text: '' };
-                        })
+                    content:
+                        typeof msg.content === 'string'
+                            ? msg.content
+                            : msg.content.map((p) => {
+                                  if (p.type === 'text')
+                                      return { type: 'text', text: p.text };
+                                  if (p.type === 'image_url')
+                                      return {
+                                          type: 'image',
+                                          image: p.image_url,
+                                      };
+                                  return { type: 'text', text: '' };
+                              }),
                 };
             case 'model':
                 return {
@@ -77,12 +93,14 @@ export class UnifiedChatModel implements IChatModel {
             case 'function':
                 return {
                     role: 'tool',
-                    content: [{
-                        type: 'tool-result',
-                        toolCallId: msg.function_id,
-                        result: msg.content || '',
-                        toolName: 'unknown',
-                    }],
+                    content: [
+                        {
+                            type: 'tool-result',
+                            toolCallId: msg.function_id,
+                            result: msg.content || '',
+                            toolName: 'unknown',
+                        },
+                    ],
                 };
             default:
                 return { role: 'user', content: '' };

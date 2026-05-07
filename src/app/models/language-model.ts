@@ -1,12 +1,16 @@
-import { createOpenAI } from '@ai-sdk/openai';
 import { createAnthropic } from '@ai-sdk/anthropic';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
-import { LanguageModel } from 'ai';
+import { createOpenAI } from '@ai-sdk/openai';
+import type { LanguageModel } from 'ai';
 
 /**
  * Instantiates the requested language model using Vercel AI SDK.
  */
-export function getLanguageModel(provider: string, modelName: string, apiKey: string): LanguageModel {
+export function getLanguageModel(
+    provider: string,
+    modelName: string,
+    apiKey: string,
+): LanguageModel {
     if (!apiKey) {
         throw new Error(`Missing API key for provider: ${provider}`);
     }

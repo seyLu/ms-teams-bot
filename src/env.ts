@@ -1,7 +1,7 @@
-import "dotenv";
-import { configDotenv } from "dotenv";
+import 'dotenv';
+import { configDotenv } from 'dotenv';
 
-const env = process.env.APP_ENV || "dev";
+const env = process.env.APP_ENV || 'dev';
 
 configDotenv({ path: `env/.env.${env}` });
 configDotenv({

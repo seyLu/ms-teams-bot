@@ -1,21 +1,21 @@
-import { App } from "@microsoft/teams.apps";
-import { ChatPrompt } from "@microsoft/teams.ai";
-import { LocalStorage } from "@microsoft/teams.common";
-import { UnifiedChatModel } from "./models/unified-chat-model";
-import { getLanguageModel } from "./models/language-model";
-import { MessageActivity, TokenCredentials } from "@microsoft/teams.api";
-import { ManagedIdentityCredential } from "@azure/identity";
-import * as fs from "fs";
-import * as path from "path";
-import config from "../config";
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+import { ManagedIdentityCredential } from '@azure/identity';
+import { ChatPrompt } from '@microsoft/teams.ai';
+import { MessageActivity, type TokenCredentials } from '@microsoft/teams.api';
+import { App } from '@microsoft/teams.apps';
+import { LocalStorage } from '@microsoft/teams.common';
+import config from '../config';
+import { getLanguageModel } from './models/language-model';
+import { UnifiedChatModel } from './models/unified-chat-model';
 
 // Create storage for conversation history
 const storage = new LocalStorage();
 
 // Load instructions from file on initialization
 function loadInstructions(): string {
-    const instructionsFilePath = path.join(__dirname, "instructions.txt");
-    return fs.readFileSync(instructionsFilePath, "utf-8").trim();
+    const instructionsFilePath = path.join(__dirname, 'instructions.txt');
+    return fs.readFileSync(instructionsFilePath, 'utf-8').trim();
 }
 
 // Load instructions once at startup
@@ -40,12 +40,12 @@ const createTokenFactory = () => {
 
 // Configure authentication using TokenCredentials
 const tokenCredentials: TokenCredentials = {
-    clientId: process.env.CLIENT_ID || "",
+    clientId: process.env.CLIENT_ID || '',
     token: createTokenFactory(),
 };
 
 const credentialOptions =
-    config.MicrosoftAppType === "UserAssignedMsi"
+    config.MicrosoftAppType === 'UserAssignedMsi'
         ? { ...tokenCredentials }
         : undefined;
 
@@ -56,7 +56,7 @@ const app = new App({
 });
 
 // Handle incoming messages
-app.on("message", async ({ send, stream, activity }) => {
+app.on('message', async ({ send, stream, activity }) => {
     //Get conversation history
     const conversationKey = `${activity.conversation.id}/${activity.from.id}`;
     const messages = storage.get(conversationKey) || [];
@@ -68,8 +68,8 @@ app.on("message", async ({ send, stream, activity }) => {
             model: new UnifiedChatModel(
                 getLanguageModel(
                     config.llmProvider,
-                    config.llmModelName || "",
-                    config.llmApiKey || "",
+                    config.llmModelName || '',
+                    config.llmApiKey || '',
                 ),
             ),
         });
@@ -94,16 +94,16 @@ app.on("message", async ({ send, stream, activity }) => {
         storage.set(conversationKey, messages);
     } catch (error) {
         console.error(error);
-        await send("The agent encountered an error or bug.");
+        await send('The agent encountered an error or bug.');
         await send(
-            "To continue to run this agent, please fix the agent source code.",
+            'To continue to run this agent, please fix the agent source code.',
         );
     }
 });
 
-app.on("message.submit.feedback", async ({ activity }) => {
+app.on('message.submit.feedback', async ({ activity }) => {
     //add custom feedback process logic here
-    console.log("Your feedback is " + JSON.stringify(activity.value));
+    console.log(`Your feedback is ${JSON.stringify(activity.value)}`);
 });
 
 export default app;

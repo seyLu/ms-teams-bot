@@ -1,56 +1,58 @@
 {
-    "name": "msteamsbot",
-    "version": "1.0.0",
-    "msteams": {
-        "teamsAppId": null
-    },
-    "description": "Microsoft 365 Agents Toolkit AI Chat Agent Sample with Microsoft Teams SDK",
-    "engines": {
-        "node": "20 || 22"
-    },
-    "author": "Microsoft",
-    "license": "MIT",
-    "main": "./lib/src/index.js",
-    "scripts": {
-        "dev:teamsfx": "APP_ENV=dev npm run dev",
-        "dev:teamsfx:playground": "APP_ENV=playground npm run dev",
-        "dev:teamsfx:launch-playground": "APP_ENV=playground agentsplayground start",
-        "dev": "APP_ENV=dev nodemon --exec node --inspect=9239 --signal SIGINT -r ts-node/register ./src/index.ts",
-        "build": "tsc --build && shx cp -r ./src/app/instructions.txt ./lib/src/app",
-        "start": "node ./lib/src/index.js",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "watch": "nodemon --exec \"npm run start\"",
-        "atk": "atk",
-        "playground": "APP_ENV=playground agentsplayground -c msteams"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com"
-    },
-    "dependencies": {
-        "@ai-sdk/anthropic": "^3.0.75",
-        "@ai-sdk/google": "^3.0.68",
-        "@ai-sdk/openai": "^3.0.62",
-        "@azure/identity": "^4.11.1",
-        "@microsoft/teams.ai": "^2.0.0",
-        "@microsoft/teams.api": "^2.0.9",
-        "@microsoft/teams.apps": "^2.0.0",
-        "@microsoft/teams.common": "^2.0.0",
-        "@microsoft/teams.openai": "^2.0.0",
-        "ai": "^6.0.175",
-        "dotenv": "^17.4.2"
-    },
-    "devDependencies": {
-        "@microsoft/m365agentsplayground": "^0.2.24",
-        "@microsoft/m365agentstoolkit-cli": "^1.1.10",
-        "@types/node": "^20.0.0",
-        "env-cmd": "^10.1.0",
-        "nodemon": "^3.1.7",
-        "shx": "^0.4.0",
-        "ts-node": "^10.4.0",
-        "typescript": "~5.8.3"
-    },
-    "overrides": {
-        "formdata-node": "6.0.3"
-    }
+  "name": "msteamsbot",
+  "version": "1.0.0",
+  "msteams": {
+    "teamsAppId": null
+  },
+  "description": "Microsoft 365 Agents Toolkit AI Chat Agent Sample with Microsoft Teams SDK",
+  "engines": {
+    "node": "20 || 22"
+  },
+  "author": "Microsoft",
+  "license": "MIT",
+  "main": "./lib/src/index.js",
+  "scripts": {
+    "dev:teamsfx": "APP_ENV=dev npm run dev",
+    "dev:teamsfx:playground": "APP_ENV=playground npm run dev",
+    "dev:teamsfx:launch-playground": "APP_ENV=playground agentsplayground start",
+    "dev": "APP_ENV=dev nodemon --exec node --inspect=9239 --signal SIGINT -r ts-node/register ./src/index.ts",
+    "build": "tsc --build && shx cp -r ./src/app/instructions.txt ./lib/src/app",
+    "start": "node ./lib/src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon --exec \"npm run start\"",
+    "atk": "atk",
+    "playground": "APP_ENV=playground agentsplayground -c msteams"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "^3.0.75",
+    "@ai-sdk/google": "^3.0.68",
+    "@ai-sdk/openai": "^3.0.62",
+    "@azure/identity": "^4.11.1",
+    "@microsoft/teams.ai": "^2.0.0",
+    "@microsoft/teams.api": "^2.0.9",
+    "@microsoft/teams.apps": "^2.0.0",
+    "@microsoft/teams.common": "^2.0.0",
+    "@microsoft/teams.openai": "^2.0.0",
+    "ai": "^6.0.175",
+    "dotenv": "^17.4.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.14",
+    "@microsoft/m365agentsplayground": "^0.2.24",
+    "@microsoft/m365agentstoolkit-cli": "^1.1.10",
+    "@types/node": "^20.0.0",
+    "env-cmd": "^10.1.0",
+    "lefthook": "^2.1.6",
+    "nodemon": "^3.1.7",
+    "shx": "^0.4.0",
+    "ts-node": "^10.4.0",
+    "typescript": "~5.8.3"
+  },
+  "overrides": {
+    "formdata-node": "6.0.3"
+  }
 }
