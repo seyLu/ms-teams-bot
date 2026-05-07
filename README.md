@@ -16,8 +16,9 @@ It showcases an agent app that responds to user questions like ChatGPT. This ena
 > For local debugging using Microsoft 365 Agents Toolkit CLI, you need to do some extra steps described in [Set up your Microsoft 365 Agents Toolkit CLI for local debugging](https://aka.ms/teamsfx-cli-debugging).
 
 1. First, select the Microsoft 365 Agents Toolkit icon on the left in the VS Code toolbar.
-1. In file *env/.env.playground.user*, fill in your API key: `SECRET_LLM_API_KEY=<your-key>`.
-1. In file *env/.env.playground*, make sure `LLM_PROVIDER` and `LLM_MODEL_NAME` are set properly (e.g. `openai` and `gpt-4o`).
+1. To set up your local environment, copy `env/.env.example` to `env/.env.local` (and `.env.playground`) and copy `env/.env.user.example` to `env/.env.local.user` (and `.env.playground.user`).
+1. In your new `*.user` files, fill in your API key: `SECRET_LLM_API_KEY=<your-key>`.
+1. In your new non-user files, make sure `LLM_PROVIDER` and `LLM_MODEL_NAME` are set properly (e.g. `openai` and `gpt-4o`).
 1. Press F5 to start debugging which launches your app in Microsoft 365 Agents Playground using a web browser. Select `Debug in Microsoft 365 Agents Playground`.
 1. You can send any message to get a response from the agent.
 
