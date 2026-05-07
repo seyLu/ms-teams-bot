@@ -21,28 +21,47 @@ export class UnifiedChatModel implements IChatModel {
         options?: ChatSendOptions,
     ): Promise<ModelMessage> {
         const chatMessages: CoreMessage[] = [];
+        let systemPrompt: string | undefined;
 
         if (options?.system) {
-            chatMessages.push({
-                role: 'system',
-                content:
-                    typeof options.system.content === 'string'
-                        ? options.system.content
-                        : JSON.stringify(options.system.content),
-            });
+            systemPrompt =
+                typeof options.system.content === 'string'
+                    ? options.system.content
+                    : JSON.stringify(options.system.content);
         }
 
         if (options?.messages) {
             const history = await options.messages.values();
             for (const msg of history) {
-                chatMessages.push(this.mapToCoreMessage(msg));
+                if (msg.role === 'system') {
+                    const content =
+                        typeof msg.content === 'string'
+                            ? msg.content
+                            : JSON.stringify(msg.content);
+                    systemPrompt = systemPrompt
+                        ? `${systemPrompt}\n\n${content}`
+                        : content;
+                } else {
+                    chatMessages.push(this.mapToCoreMessage(msg));
+                }
             }
         }
 
-        chatMessages.push(this.mapToCoreMessage(input));
+        if (input.role === 'system') {
+            const content =
+                typeof input.content === 'string'
+                    ? input.content
+                    : JSON.stringify(input.content);
+            systemPrompt = systemPrompt
+                ? `${systemPrompt}\n\n${content}`
+                : content;
+        } else {
+            chatMessages.push(this.mapToCoreMessage(input));
+        }
 
         const result = await streamText({
             model: this.aiModel,
+            system: systemPrompt,
             messages: chatMessages,
         });
 
@@ -85,11 +104,7 @@ export class UnifiedChatModel implements IChatModel {
                     role: 'assistant',
                     content: msg.content || '',
                 };
-            case 'system':
-                return {
-                    role: 'system',
-                    content: msg.content,
-                };
+
             case 'function':
                 return {
                     role: 'tool',
