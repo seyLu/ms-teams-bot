@@ -21,4 +21,6 @@ deploy:
     with:
       target: ./.localConfigs.playground
       envs:
-        OPENAI_API_KEY: ${{SECRET_OPENAI_API_KEY}}
+        LLM_PROVIDER: ${{LLM_PROVIDER}}
+        LLM_API_KEY: ${{SECRET_LLM_API_KEY}}
+        LLM_MODEL_NAME: ${{LLM_MODEL_NAME}}

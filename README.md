@@ -11,12 +11,13 @@ It showcases an agent app that responds to user questions like ChatGPT. This ena
 >
 > - [Node.js](https://nodejs.org/), supported versions: 20, 22.
 > - [Microsoft 365 Agents Toolkit Visual Studio Code Extension](https://aka.ms/teams-toolkit) latest version or [Microsoft 365 Agents Toolkit CLI](https://aka.ms/teamsfx-toolkit-cli).
-> - An account with [OpenAI](https://platform.openai.com/).
+> - An account with [OpenAI](https://platform.openai.com/), [Anthropic](https://www.anthropic.com/), or [Google Gemini](https://ai.google.dev/).
 
 > For local debugging using Microsoft 365 Agents Toolkit CLI, you need to do some extra steps described in [Set up your Microsoft 365 Agents Toolkit CLI for local debugging](https://aka.ms/teamsfx-cli-debugging).
 
 1. First, select the Microsoft 365 Agents Toolkit icon on the left in the VS Code toolbar.
-1. In file *env/.env.playground.user*, fill in your OpenAI key `SECRET_OPENAI_API_KEY=<your-key>`.
+1. In file *env/.env.playground.user*, fill in your API key: `SECRET_LLM_API_KEY=<your-key>`.
+1. In file *env/.env.playground*, make sure `LLM_PROVIDER` and `LLM_MODEL_NAME` are set properly (e.g. `openai` and `gpt-4o`).
 1. Press F5 to start debugging which launches your app in Microsoft 365 Agents Playground using a web browser. Select `Debug in Microsoft 365 Agents Playground`.
 1. You can send any message to get a response from the agent.
 
@@ -50,6 +51,24 @@ The following are Microsoft 365 Agents Toolkit specific project files. You can [
 |`m365agents.yml`|This is the main Microsoft 365 Agents Toolkit project file. The project file defines two primary things:  Properties and configuration Stage definitions. |
 |`m365agents.local.yml`|This overrides `m365agents.yml` with actions that enable local execution and debugging.|
 |`m365agents.playground.yml`| This overrides `m365agents.yml` with actions that enable local execution and debugging in Microsoft 365 Agents Playground.|
+
+## Swappable LLM Models & Environment Configuration
+
+This template has been customized to support multiple Large Language Model providers (OpenAI, Anthropic, Google Gemini) using the Vercel AI SDK.
+
+To switch providers, update the following environment variables in your `.env.local` or `.env.dev` files:
+- `LLM_PROVIDER`: The provider to use (`openai`, `claude`, or `gemini`).
+- `LLM_MODEL_NAME`: The specific model version (e.g., `gpt-4o`, `claude-3-7-sonnet-latest`, `gemini-2.5-pro`).
+
+### Why use `SECRET_` for API Keys?
+
+You must place your API keys in the `.user` configuration files (e.g., `.env.local.user` or `.env.dev.user`) as `SECRET_LLM_API_KEY=<your-key>`. 
+
+> [!IMPORTANT]
+> **Always prefix API keys with `SECRET_`**. 
+> The Microsoft 365 Agents Toolkit automatically scans environment variables. Any variable starting with `SECRET_` will be masked (`***`) in your build and deployment logs. If you just use `LLM_API_KEY`, the toolkit might accidentally print your raw API key to the console or CI/CD logs during provisioning.
+>
+> Our codebase (`src/config.ts`) prioritizes `SECRET_LLM_API_KEY` over `LLM_API_KEY` to enforce this security best practice!
 
 ## Extend the template
 

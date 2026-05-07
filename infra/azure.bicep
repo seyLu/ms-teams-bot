@@ -4,7 +4,9 @@
 param resourceBaseName string
 
 @secure()
-param openAIKey string
+param llmApiKey string
+param llmProvider string
+param llmModelName string
 
 param webAppSKU string
 
@@ -67,8 +69,16 @@ resource webApp 'Microsoft.Web/sites@2021-02-01' = {
           value: 'UserAssignedMsi'
         }
         {
-          name: 'OPENAI_API_KEY'
-          value: openAIKey
+          name: 'LLM_PROVIDER'
+          value: llmProvider
+        }
+        {
+          name: 'LLM_API_KEY'
+          value: llmApiKey
+        }
+        {
+          name: 'LLM_MODEL_NAME'
+          value: llmModelName
         }
       ]
       ftpsState: 'FtpsOnly'

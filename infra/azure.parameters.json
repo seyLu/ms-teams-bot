@@ -5,8 +5,14 @@
     "resourceBaseName": {
       "value": "bot${{RESOURCE_SUFFIX}}"
     },
-    "openAIKey": {
-      "value": "${{SECRET_OPENAI_API_KEY}}"
+    "llmProvider": {
+      "value": "${{LLM_PROVIDER}}"
+    },
+    "llmApiKey": {
+      "value": "${{SECRET_LLM_API_KEY}}"
+    },
+    "llmModelName": {
+      "value": "${{LLM_MODEL_NAME}}"
     },
     "webAppSKU": {
       "value": "B1"
