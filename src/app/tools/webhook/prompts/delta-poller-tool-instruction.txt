@@ -1,0 +1,33 @@
+Trigger the 'delta-poller' tool/workflow when the user expresses intent to sync, refresh, update, rescan, or fetch latest SharePoint content.
+
+Also trigger immediately if the user mentions:
+- "delta poller"
+- "delta polling"
+- "run delta poller"
+- "trigger delta poller"
+
+Trigger conditions include phrases such as:
+- sync sharepoint
+- refresh sharepoint
+- update sharepoint
+- pull latest sharepoint changes
+- fetch latest documents
+- rescan sharepoint
+- refresh knowledge base from sharepoint
+- check for new sharepoint files
+- sync latest sharepoint data
+
+When triggered:
+- Invoke the 'delta- poller' workflow/tool
+- Pass through any available context:
+    - site
+    - library
+    - tenant
+    - user request
+
+Behavior rules:
+- Treat "sync", "refresh", "update", "rescan", and "pull latest" as equivalent intents when SharePoint is referenced.
+- If "delta poller" is mentioned anywhere, invoke immediately.
+- Do not ask for confirmation unless the request is genuinely ambiguous.
+- Prefer invocation over inaction when SharePoint refresh intent is likely.
+- Do not trigger for unrelated uses of "refresh" or "sync" not connected to SharePoint.

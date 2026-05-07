@@ -7,6 +7,8 @@ param resourceBaseName string
 param llmApiKey string
 param llmProvider string
 param llmModelName string
+@secure()
+param sharepointDeltaPollerWebhookUrl string
 
 param webAppSKU string
 
@@ -79,6 +81,10 @@ resource webApp 'Microsoft.Web/sites@2021-02-01' = {
         {
           name: 'LLM_MODEL_NAME'
           value: llmModelName
+        }
+        {
+          name: 'SECRET_SHAREPOINT_DELTA_POLLER_WEBHOOK_URL'
+          value: sharepointDeltaPollerWebhookUrl
         }
       ]
       ftpsState: 'FtpsOnly'

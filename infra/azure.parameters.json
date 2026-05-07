@@ -14,6 +14,9 @@
     "llmModelName": {
       "value": "${{LLM_MODEL_NAME}}"
     },
+    "sharepointDeltaPollerWebhookUrl": {
+      "value": "${{SECRET_SHAREPOINT_DELTA_POLLER_WEBHOOK_URL}}"
+    },
     "webAppSKU": {
       "value": "B1"
     },

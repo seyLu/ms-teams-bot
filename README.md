@@ -71,6 +71,12 @@ You must place your API keys in the `.user` configuration files (e.g., `.env.loc
 >
 > Our codebase (`src/config.ts`) prioritizes `SECRET_LLM_API_KEY` over `LLM_API_KEY` to enforce this security best practice!
 
+## Webhook Integrations (n8n, Slack, etc.)
+
+This bot includes a powerful, generic `triggerWebhook` tool allowing the LLM to interact with external services (like n8n workflows) dynamically.
+
+For details on how webhooks are configured securely without committing API keys to source control, and a step-by-step guide on how to add a new webhook integration, please see the [Webhook Documentation](src/app/tools/webhook/README.md).
+
 ## Extend the template
 
 To extend the Basic AI Chatbot template with more AI capabilities, explore [Microsoft Teams SDK documentation](https://aka.ms/m365-agents-toolkit/teams-agent-extend-ai).
