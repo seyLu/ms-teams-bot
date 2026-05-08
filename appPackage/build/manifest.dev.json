@@ -1,0 +1,63 @@
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.26/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.26",
+    "version": "1.0.0",
+    "id": "edb7875a-1bd0-473b-bb87-c65c6d7a89dc",
+    "developer": {
+        "name": "My App, Inc.",
+        "websiteUrl": "https://www.example.com",
+        "privacyUrl": "https://www.example.com/privacy",
+        "termsOfUseUrl": "https://www.example.com/termofuse"
+    },
+    "name": {
+        "short": "ms-teams-botdev",
+        "full": "full name for ms-teams-bot"
+    },
+    "description": {
+        "short": "short description for ms-teams-bot",
+        "full": "full description for ms-teams-bot"
+    },
+    "icons": {
+        "outline": "outline.png",
+        "color": "color.png"
+    },
+    "accentColor": "#FFFFFF",
+    "configurableTabs": [],
+    "staticTabs": [],
+    "bots": [
+        {
+            "botId": "82b182de-acce-4603-9aa7-a1447593a63a",
+            "isNotificationOnly": false,
+            "supportsFiles": false,
+            "scopes": [
+                "team",
+                "groupChat",
+                "personal"
+            ],
+            "commandLists": [
+                {
+                    "scopes": [
+                        "personal"
+                    ],
+                    "commands": [
+                        {
+                            "title": "How can you help me?",
+                            "description": "How can you help me?"
+                        },
+                        {
+                            "title": "How to develop agent for Teams?",
+                            "description": "How can I develop agents with Microsoft 365 Agents Toolkit?"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "composeExtensions": [],
+    "permissions": [
+        "identity",
+        "messageTeamMembers"
+    ],
+    "validDomains": [],
+    "supportsChannelFeatures": "tier1"
+}

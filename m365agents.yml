@@ -73,6 +73,10 @@ deploy:
     name: build app
     with:
       args: run build --if-present
+  # Prune dev dependencies before zipping to drastically reduce zip size
+  - uses: cli/runNpmCommand
+    with:
+      args: prune --omit=dev
   # Deploy your application to Azure App Service using the zip deploy feature.
   # For additional details, refer to https://aka.ms/zip-deploy-to-app-services.
   - uses: azureAppService/zipDeploy

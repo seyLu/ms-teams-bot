@@ -1,0 +1,32 @@
+{
+  "languages": {
+    "TypeScript": { "formatter": { "language_server": { "name": "biome" } } },
+    "TSX": { "formatter": { "language_server": { "name": "biome" } } },
+  },
+  "lsp": {
+    "biome": {
+      "settings": {
+        "require_config_file": true,
+        "arguments": ["lsp-proxy"],
+      },
+    },
+    "tailwindcss-language-server": {
+      "settings": {
+        "classFunctions": ["cva", "cx"],
+      },
+    },
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "preferences": {
+            "importModuleSpecifier": "non-relative",
+          },
+        },
+      },
+    },
+  },
+  "code_actions_on_format": {
+    "source.organizeImports.biome": true,
+    "source.fixAll.biome": true,
+  },
+}

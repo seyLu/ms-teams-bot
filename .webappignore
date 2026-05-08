@@ -1,0 +1,15 @@
+node_modules/@types
+.vscode
+.env
+.env.*
+*.zip
+appPackage/build
+/infra/
+/src/
+/tests/
+.git
+.github/
+/devTools/
+.agents/
+!lib/
+!lib/**/*
