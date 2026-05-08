@@ -6,5 +6,6 @@ declare const config: {
     llmProvider: string;
     llmApiKey: string;
     llmModelName: string;
+    maxHistoryMessages: number;
 };
 export default config;

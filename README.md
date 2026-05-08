@@ -77,6 +77,14 @@ This bot includes a powerful, generic `triggerWebhook` tool allowing the LLM to 
 
 For details on how webhooks are configured securely without committing API keys to source control, and a step-by-step guide on how to add a new webhook integration, please see the [Webhook Documentation](src/app/tools/webhook/README.md).
 
+## Conversation History Management
+
+To maintain a healthy token context limit and prevent API token exhaustion or high costs during long chats, this template implements a rolling conversation window.
+
+By default, the bot remembers the most recent **20 messages** (10 conversation turns). This limit is managed dynamically right before the conversation state is saved to the bot's storage. 
+
+You can easily adjust this limit to retain more or less context by setting the `MAX_HISTORY_MESSAGES` environment variable in your `.env.local` or `.env.dev` files (e.g., `MAX_HISTORY_MESSAGES=50`).
+
 ## Extend the template
 
 To extend the Basic AI Chatbot template with more AI capabilities, explore [Microsoft Teams SDK documentation](https://aka.ms/m365-agents-toolkit/teams-agent-extend-ai).

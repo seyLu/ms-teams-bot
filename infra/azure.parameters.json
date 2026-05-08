@@ -14,14 +14,17 @@
     "llmModelName": {
       "value": "${{LLM_MODEL_NAME}}"
     },
-    "sharepointDeltaPollerWebhookUrl": {
-      "value": "${{SECRET_SHAREPOINT_DELTA_POLLER_WEBHOOK_URL}}"
+    "maxHistoryMessages": {
+      "value": "${{MAX_HISTORY_MESSAGES}}"
     },
     "webAppSKU": {
       "value": "B1"
     },
     "botDisplayName": {
       "value": "ms-teams-bot"
+    },
+    "sharepointDeltaPollerWebhookUrl": {
+      "value": "${{SECRET_SHAREPOINT_DELTA_POLLER_WEBHOOK_URL}}"
     }
   }
 }

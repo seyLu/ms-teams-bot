@@ -5,6 +5,7 @@ pre-commit:
       exclude:
         - .zed/settings.json
         - "lib/**"
+        - "node_modules/**"
       run: npx @biomejs/biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
       stage_fixed: true
 
@@ -15,6 +16,7 @@ pre-push:
       exclude:
         - .zed/settings.json
         - "lib/**"
+        - "node_modules/**"
       run: npx @biomejs/biome check --no-errors-on-unmatched --files-ignore-unknown=true {push_files}
       stage_fixed: true
 

@@ -74,23 +74,40 @@ app.on('message', async ({ send, stream, activity }) => {
             ),
         });
 
+        let responseContent = '';
         if (activity.conversation.isGroup) {
             // If the conversation is a group chat, we need to send the final response
             // back to the group chat
             const response = await prompt.send(activity.text);
-            const responseActivity = new MessageActivity(response.content)
+            if (response?.content) {
+                responseContent = response.content;
+            }
+            const responseActivity = new MessageActivity(responseContent)
                 .addAiGenerated()
                 .addFeedback();
             await send(responseActivity);
         } else {
-            await prompt.send(activity.text, {
+            const response = await prompt.send(activity.text, {
                 onChunk: (chunk) => {
                     stream.emit(chunk);
                 },
             });
+            if (response?.content) {
+                responseContent = response.content;
+            }
             // We wrap the final response with an AI Generated indicator
             stream.emit(new MessageActivity().addAiGenerated().addFeedback());
         }
+
+        messages.push({ role: 'user', content: activity.text });
+        messages.push({ role: 'model', content: responseContent });
+
+        // Keep only the most recent N messages to prevent context window bloat
+        const MAX_HISTORY_MESSAGES = config.maxHistoryMessages;
+        if (messages.length > MAX_HISTORY_MESSAGES) {
+            messages.splice(0, messages.length - MAX_HISTORY_MESSAGES);
+        }
+
         storage.set(conversationKey, messages);
     } catch (error) {
         console.error(error);
