@@ -10,16 +10,16 @@ It showcases an agent app that responds to user questions like ChatGPT. This ena
 > To run the template in your local dev machine, you will need:
 >
 > - [Node.js](https://nodejs.org/), supported versions: 20, 22.
-> - [Microsoft 365 Agents Toolkit Visual Studio Code Extension](https://aka.ms/teams-toolkit) latest version or [Microsoft 365 Agents Toolkit CLI](https://aka.ms/teamsfx-toolkit-cli).
+> - [Microsoft 365 Agents Toolkit CLI](https://aka.ms/teamsfx-toolkit-cli).
 > - An account with [OpenAI](https://platform.openai.com/), [Anthropic](https://www.anthropic.com/), or [Google Gemini](https://ai.google.dev/).
 
 > For local debugging using Microsoft 365 Agents Toolkit CLI, you need to do some extra steps described in [Set up your Microsoft 365 Agents Toolkit CLI for local debugging](https://aka.ms/teamsfx-cli-debugging).
 
-1. First, select the Microsoft 365 Agents Toolkit icon on the left in the VS Code toolbar.
 1. To set up your local environment, copy `env/.env.example` to `env/.env.local` (and `.env.playground`) and copy `env/.env.user.example` to `env/.env.local.user` (and `.env.playground.user`).
 1. In your new `*.user` files, fill in your API key: `SECRET_LLM_API_KEY=<your-key>`.
 1. In your new non-user files, make sure `LLM_PROVIDER` and `LLM_MODEL_NAME` are set properly (e.g. `openai` and `gpt-4o`).
-1. Press F5 to start debugging which launches your app in Microsoft 365 Agents Playground using a web browser. Select `Debug in Microsoft 365 Agents Playground`.
+1. Run `npm run dev` in one terminal to start your local dev server.
+1. Run `npm run playground` in another terminal to launch the Microsoft 365 Agents Playground using a web browser.
 1. You can send any message to get a response from the agent.
 
 **Congratulations**! You are running an application that can now interact with users in Microsoft 365 Agents Playground:
@@ -30,7 +30,6 @@ It showcases an agent app that responds to user questions like ChatGPT. This ena
 
 | Folder       | Contents                                            |
 | - | - |
-| `.vscode`    | VSCode files for debugging                          |
 | `appPackage` | Templates for the application manifest        |
 | `env`        | Environment files                                   |
 | `infra`      | Templates for provisioning Azure resources          |

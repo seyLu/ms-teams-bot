@@ -9,7 +9,10 @@ configDotenv({
     override: true,
 });
 
-// local overrides
+// Fallback to local environments.
+// Because 'override: true' is NOT set here, these files will NOT overwrite
+// variables already defined in the active APP_ENV (e.g., .env.dev).
+// They strictly act as a fallback for missing variables.
 configDotenv({
     path: `env/.env.local`,
 });

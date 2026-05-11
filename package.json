@@ -15,7 +15,7 @@
     "dev:teamsfx": "APP_ENV=dev npm run dev",
     "dev:teamsfx:playground": "APP_ENV=playground npm run dev",
     "dev:teamsfx:launch-playground": "APP_ENV=playground agentsplayground start",
-    "dev": "APP_ENV=dev nodemon --exec node --inspect=9239 --signal SIGINT -r ts-node/register ./src/index.ts",
+    "dev": "nodemon --exec node --inspect=9239 --signal SIGINT -r ts-node/register ./src/index.ts",
     "build": "tsc --build && shx cp -r ./src/app/instructions.txt ./lib/src/app && shx cp -r ./src/app/tools/webhook/prompts ./lib/src/app/tools/webhook",
     "start": "node ./lib/src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
