@@ -46,15 +46,15 @@ This project is an AI-powered chatbot for Microsoft Teams, built using the [Micr
    npm install
    ```
 3. **Configure Environment Variables**:
-   - Copy `env/.env.example` to `env/.env.local`
-   - Copy `env/.env.user.example` to `env/.env.local.user`
+   - Copy `env/.env.example` to `env/.env.dev`
+   - Copy `env/.env.user.example` to `env/.env.dev.user`
 4. **Set your API Key**:
-   In `env/.env.local.user`, set your API key. *Note: Always use the `SECRET_` prefix so the toolkit masks it in logs.*
+   In `env/.env.dev.user`, set your API key. *Note: Always use the `SECRET_` prefix so the toolkit masks it in logs.*
    ```env
    SECRET_LLM_API_KEY=your_api_key_here
    ```
 5. **Set your LLM Provider**:
-   In `env/.env.local`, ensure your provider and model are set appropriately (e.g. `openai` and `gpt-4o`):
+   In `env/.env.dev`, ensure your provider and model are set appropriately (e.g. `openai` and `gpt-4o`):
    ```env
    LLM_PROVIDER=openai
    LLM_MODEL_NAME=gpt-4o
@@ -78,9 +78,9 @@ Deployment is managed by the Microsoft 365 Agents Toolkit, which automates both 
 ### Deployment Steps
 1. **Sign in**: Ensure you are signed into your Microsoft 365 account and Azure account via the CLI (e.g., `npx atk account login`).
 2. **Provision Infrastructure**:
-   - Run: `npx atk provision --env dev`
+   - Run: `npx atk provision`
 3. **Deploy Code**:
-   - Run: `npx atk deploy --env dev`
+   - Run: `npx atk deploy`
 4. **Publish (Optional)**:
    - To make the app available to others in your organization, use `npx atk publish` to submit it to the Teams Admin Center for review and approval.
 

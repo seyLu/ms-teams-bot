@@ -15,7 +15,7 @@ It showcases an agent app that responds to user questions like ChatGPT. This ena
 
 > For local debugging using Microsoft 365 Agents Toolkit CLI, you need to do some extra steps described in [Set up your Microsoft 365 Agents Toolkit CLI for local debugging](https://aka.ms/teamsfx-cli-debugging).
 
-1. To set up your local environment, copy `env/.env.example` to `env/.env.local` (and `.env.playground`) and copy `env/.env.user.example` to `env/.env.local.user` (and `.env.playground.user`).
+1. To set up your local environment, copy `env/.env.example` to `env/.env.dev` (and `.env.playground`) and copy `env/.env.user.example` to `env/.env.dev.user` (and `.env.playground.user`).
 1. In your new `*.user` files, fill in your API key: `SECRET_LLM_API_KEY=<your-key>`.
 1. In your new non-user files, make sure `LLM_PROVIDER` and `LLM_MODEL_NAME` are set properly (e.g. `openai` and `gpt-4o`).
 1. Run `npm run dev` in one terminal to start your local dev server.
@@ -56,16 +56,16 @@ The following are Microsoft 365 Agents Toolkit specific project files. You can [
 
 This template has been customized to support multiple Large Language Model providers (OpenAI, Anthropic, Google Gemini) using the Vercel AI SDK.
 
-To switch providers, update the following environment variables in your `.env.local` or `.env.dev` files:
+To switch providers, update the following environment variables in your `.env.dev` files:
 - `LLM_PROVIDER`: The provider to use (`openai`, `claude`, or `gemini`).
 - `LLM_MODEL_NAME`: The specific model version (e.g., `gpt-4o`, `claude-3-7-sonnet-latest`, `gemini-2.5-pro`).
 
 ### Why use `SECRET_` for API Keys?
 
-You must place your API keys in the `.user` configuration files (e.g., `.env.local.user` or `.env.dev.user`) as `SECRET_LLM_API_KEY=<your-key>`. 
+You must place your API keys in the `.user` configuration files (e.g., `.env.dev.user`) as `SECRET_LLM_API_KEY=<your-key>`.
 
 > [!IMPORTANT]
-> **Always prefix API keys with `SECRET_`**. 
+> **Always prefix API keys with `SECRET_`**.
 > The Microsoft 365 Agents Toolkit automatically scans environment variables. Any variable starting with `SECRET_` will be masked (`***`) in your build and deployment logs. If you just use `LLM_API_KEY`, the toolkit might accidentally print your raw API key to the console or CI/CD logs during provisioning.
 >
 > Our codebase (`src/config.ts`) prioritizes `SECRET_LLM_API_KEY` over `LLM_API_KEY` to enforce this security best practice!
@@ -80,9 +80,9 @@ For details on how webhooks are configured securely without committing API keys 
 
 To maintain a healthy token context limit and prevent API token exhaustion or high costs during long chats, this template implements a rolling conversation window.
 
-By default, the bot remembers the most recent **20 messages** (10 conversation turns). This limit is managed dynamically right before the conversation state is saved to the bot's storage. 
+By default, the bot remembers the most recent **20 messages** (10 conversation turns). This limit is managed dynamically right before the conversation state is saved to the bot's storage.
 
-You can easily adjust this limit to retain more or less context by setting the `MAX_HISTORY_MESSAGES` environment variable in your `.env.local` or `.env.dev` files (e.g., `MAX_HISTORY_MESSAGES=50`).
+You can easily adjust this limit to retain more or less context by setting the `MAX_HISTORY_MESSAGES` environment variable in your `.env.dev` or `.env.dev` files (e.g., `MAX_HISTORY_MESSAGES=50`).
 
 ## Extend the template
 
