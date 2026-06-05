@@ -31,6 +31,7 @@
     "@ai-sdk/anthropic": "^3.0.75",
     "@ai-sdk/google": "^3.0.68",
     "@ai-sdk/openai": "^3.0.62",
+    "@ai-sdk/openai-compatible": "^2.0.48",
     "@azure/identity": "^4.13.1",
     "@microsoft/teams.ai": "^2.0.10",
     "@microsoft/teams.api": "^2.0.10",

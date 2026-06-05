@@ -5,6 +5,7 @@ const config = {
     MicrosoftAppPassword: process.env.CLIENT_SECRET,
     llmProvider: process.env.LLM_PROVIDER || 'openai',
     llmApiKey: process.env.SECRET_LLM_API_KEY || process.env.LLM_API_KEY,
+    llmBaseUrl: process.env.LLM_BASE_URL,
     llmModelName: process.env.LLM_MODEL_NAME,
     maxHistoryMessages: process.env.MAX_HISTORY_MESSAGES
         ? Number.parseInt(process.env.MAX_HISTORY_MESSAGES, 10)

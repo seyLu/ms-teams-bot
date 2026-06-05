@@ -5,6 +5,7 @@ declare const config: {
     MicrosoftAppPassword: string;
     llmProvider: string;
     llmApiKey: string;
+    llmBaseUrl: string;
     llmModelName: string;
     maxHistoryMessages: number;
 };

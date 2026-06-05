@@ -8,7 +8,7 @@ This project is an AI-powered chatbot for Microsoft Teams, built using the [Micr
 
 ### Key Technologies
 - **Microsoft Teams SDK (`@microsoft/teams.ai`)**: Handles the core bot framework, Teams channel connections, and bot state management.
-- **Vercel AI SDK (`ai`, `@ai-sdk/openai`, etc.)**: Manages the integration with Large Language Models (LLMs).
+- **Vercel AI SDK (`ai`, `@ai-sdk/openai`, `@ai-sdk/openai-compatible`, etc.)**: Manages the integration with Large Language Models (LLMs).
 - **Microsoft 365 Agents Toolkit (`atk`)**: Provides the CLI and automation for provisioning Azure infrastructure and deploying the code.
 
 ### Directory Structure
@@ -25,7 +25,7 @@ This project is an AI-powered chatbot for Microsoft Teams, built using the [Micr
 - `m365agents.yml` / `m365agents.local.yml`: Toolkit configuration files defining the steps for provisioning and deployment.
 
 ### Key Features
-- **Swappable LLMs**: Easily switch between OpenAI, Anthropic, or Google Gemini by changing `LLM_PROVIDER` in the environment variables.
+- **Swappable LLMs**: Easily switch between OpenAI, Anthropic, Google Gemini, or LiteLLM by changing `LLM_PROVIDER` in the environment variables.
 - **Conversation History**: Implements a rolling window (default 20 messages) to manage token limits and maintain context efficiently.
 - **Webhooks**: Includes a tool to trigger external webhooks (e.g., n8n, Slack) directly from the LLM based on user requests.
 
@@ -37,7 +37,7 @@ This project is an AI-powered chatbot for Microsoft Teams, built using the [Micr
 - [Node.js](https://nodejs.org/) (Version 20 or 22)
 - [Microsoft 365 Agents Toolkit CLI](https://aka.ms/teamsfx-toolkit-cli) (`m365agentstoolkit-cli`)
 - A Microsoft 365 Tenant with permissions to upload custom apps.
-- An API Key from your chosen LLM provider (OpenAI, Anthropic, or Google Gemini).
+- An API Key from your chosen LLM provider (OpenAI, Anthropic, Google Gemini, or LiteLLM).
 
 ### Local Setup Steps
 1. **Clone the repository** and navigate into the directory.
