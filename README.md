@@ -11,7 +11,7 @@ It showcases an agent app that responds to user questions like ChatGPT. This ena
 >
 > - [Node.js](https://nodejs.org/), supported versions: 20, 22.
 > - [Microsoft 365 Agents Toolkit CLI](https://aka.ms/teamsfx-toolkit-cli).
-> - An account with [OpenAI](https://platform.openai.com/), [Anthropic](https://www.anthropic.com/), or [Google Gemini](https://ai.google.dev/).
+> - An account with [OpenAI](https://platform.openai.com/), [Anthropic](https://www.anthropic.com/), [Google Gemini](https://ai.google.dev/), or a proxy like [LiteLLM](https://litellm.vercel.app/).
 
 > For local debugging using Microsoft 365 Agents Toolkit CLI, you need to do some extra steps described in [Set up your Microsoft 365 Agents Toolkit CLI for local debugging](https://aka.ms/teamsfx-cli-debugging).
 
@@ -54,10 +54,11 @@ The following are Microsoft 365 Agents Toolkit specific project files. You can [
 
 ## Swappable LLM Models & Environment Configuration
 
-This template has been customized to support multiple Large Language Model providers (OpenAI, Anthropic, Google Gemini) using the Vercel AI SDK.
+This template has been customized to support multiple Large Language Model providers (OpenAI, Anthropic, Google Gemini, LiteLLM) using the Vercel AI SDK.
 
 To switch providers, update the following environment variables in your `.env.dev` files:
-- `LLM_PROVIDER`: The provider to use (`openai`, `claude`, or `gemini`).
+- `LLM_PROVIDER`: The provider to use (`openai`, `claude`, `gemini`, or `litellm`).
+- `LLM_BASE_URL`: The custom base URL to use (required for `litellm`, optional for others).
 - `LLM_MODEL_NAME`: The specific model version (e.g., `gpt-4o`, `claude-3-7-sonnet-latest`, `gemini-2.5-pro`).
 
 ### Why use `SECRET_` for API Keys?

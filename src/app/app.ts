@@ -70,6 +70,7 @@ app.on('message', async ({ send, stream, activity }) => {
                     config.llmProvider,
                     config.llmModelName || '',
                     config.llmApiKey || '',
+                    config.llmBaseUrl,
                 ),
             ),
         });
