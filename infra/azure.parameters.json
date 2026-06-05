@@ -11,6 +11,9 @@
     "llmApiKey": {
       "value": "${{SECRET_LLM_API_KEY}}"
     },
+    "llmBaseUrl": {
+      "value": "${{LLM_BASE_URL}}"
+    },
     "llmModelName": {
       "value": "${{LLM_MODEL_NAME}}"
     },

@@ -7,6 +7,7 @@ param resourceBaseName string
 param llmApiKey string
 param llmProvider string
 param llmModelName string
+param llmBaseUrl string = ''
 
 @secure()
 param sharepointDeltaPollerWebhookUrl string
@@ -79,6 +80,10 @@ resource webApp 'Microsoft.Web/sites@2021-02-01' = {
         {
           name: 'LLM_API_KEY'
           value: llmApiKey
+        }
+        {
+          name: 'LLM_BASE_URL'
+          value: llmBaseUrl
         }
         {
           name: 'LLM_MODEL_NAME'
